@@ -1,0 +1,22 @@
+@import "@/app/variables.scss";
+.button{
+    &Main{
+        background-color: $accent;
+        color: $background;
+        padding: 1rem 4rem;
+        border-radius: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: all 0.1s ease-in-out;
+
+        &:hover{
+            background-color: darken($accent, 10%);
+            transition: all 0.1s ease-in-out;
+        }
+
+        &:active{
+            transform: scale(0.96);
+            transition: all 0.1s ease-in-out;
+        }
+    }
+}

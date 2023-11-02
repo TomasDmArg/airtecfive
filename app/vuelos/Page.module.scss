@@ -1,0 +1,52 @@
+.flightCard{
+    background-color: #eee;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1rem;
+    h2, h3{
+        font-size: 24px;
+        font-weight: 700;
+    }
+    
+    &Container{
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+    }
+    &Total{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        h3{
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        padding: 1rem 2rem;
+        background-color: #eee;
+        position: fixed;
+        bottom: 0;
+    }
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: 3rem;
+}
+
+.detail{
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: 3rem;
+}
