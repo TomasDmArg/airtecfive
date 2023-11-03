@@ -1,0 +1,11 @@
+@import "@/app/variables.scss";
+.footer{
+        background-color: $background;
+        color: #909090;
+        padding: 1rem 4rem;
+        border-radius: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: all 0.1s ease-in-out;
+   
+}
