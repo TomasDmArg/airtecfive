@@ -155,7 +155,7 @@ export default function Page() {
                                             <h3>${flight.precio}</h3>
                                         </div>
                                     ) : (
-                                        <></>
+                                        <React.Fragment key={index}></React.Fragment>
                                     )
                                 )
                             ) : (

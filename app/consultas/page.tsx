@@ -125,7 +125,7 @@ export default function Reservas() {
                       <section className="vuelosIndividuales__pasajeros">
                         {
                           pasajeros.map((pasajero) => (
-                            <section className="vuelosIndividuales__pasajeros__item">
+                            <section className="vuelosIndividuales__pasajeros__item" key={pasajero.dni}>
                               <h4>{pasajero.nombre} {pasajero.apellido}</h4>
                               <p>DNI: {pasajero.dni}</p>
                             </section>

@@ -92,7 +92,7 @@ export default function Reservas() {
             <h2 className="vuelosIndividuales__title">{passengerName}</h2>
             {
               vuelos.map((vuelo) => (
-                <section className="vuelosIndividuales__item">
+                <section className="vuelosIndividuales__item" key={vuelo.num_vuelo}>
                   <h3>{vuelo.origen} - {vuelo.destino}</h3>
                   <p>Salida: {formatDate(vuelo.hora_salida)} - Llegada: {formatDate(vuelo.hora_llegada)}</p>
                 </section>
