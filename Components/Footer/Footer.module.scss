@@ -1,11 +1,51 @@
 @import "@/app/variables.scss";
-.footer{
-        background-color: $background;
-        color: #909090;
-        padding: 1rem 4rem;
-        border-radius: 0.5rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-        transition: all 0.1s ease-in-out;
-   
+.footer{	
+	background-color: #eee;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: calc(100% + 4rem);
+	padding: 2rem 4rem;
+	
+	& > img{
+		height: 40px;
+	}
+
+	& > section{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		div{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 1rem;
+		}
+	}
+}	
+
+
+@media (max-width: 768px){
+	.footer{
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		width: 100%;
+		padding: 2rem 2rem;
+		& > section{
+			margin-top: 2rem;
+			width: 100%;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			gap: 1rem;
+			div{
+				width: 100%;
+			}
+		}
+	}
 }

@@ -4,50 +4,57 @@ import { IconUser } from "@tabler/icons-react";
 
 import "./Page.scss";
 import { GeistSans } from "geist/font";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { Flight } from "../vuelos/page";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Reservas() {
   const [dni, setDni] = useState('');
-  const [loading, setLoading] = useState('');
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [passengerName, setPassengerName] = useState<string>("Mis vuelos");
+  const [vuelos, setVuelos] = useState<Flight[]>([]);
+  const container = useRef(null);
   const handleSearch = async () => {
+    setLoading(true);
     const { data, error } = await supabase
       .from('pasajeros')
-      .select('id')
+      .select('id,nombre')
       .eq('dni', dni)
       .single()
+    
+    setPassengerName(data?.nombre);
 
-      if(!data) return;
+    if(!data) return;
 
-      const { data: data2, error: error2 } = await supabase
+    const { data: data2, error: error2 } = await supabase
       .from('reservas')
       .select('vuelo')
       .eq('pasajero', data.id)
-      .single()
 
-      if(!data2) return;
+    if(!data2) return;
 
-      const {data: data3, error: error3} = await supabase
+    const promises = data2.map((reserva) => {
+      return supabase
         .from("vuelos")
         .select("*")
-        .eq("num_vuelo", data2.vuelo)
-        .single();
+        .eq("num_vuelo", reserva.vuelo)
+        .single()
+    });
+
+    Promise.all(promises).then((results) => {
+      const vuelos = results.map((result) => result.data).filter((vuelo) => vuelo !== null);
+      setLoading(false);
+      setVuelos(vuelos);
+    });
 
     if (error) {
       console.error(error);
       return;
     }
-
-    if (data3.length === 0) {
-      console.log('No rows returned');
-      return;
-    }
-    
-    console.log(data3);
-    
-
   }
+
+  const formatDate = (date: string): string => date.replace("T", " ").slice(0, -3);
 
   return (
     <main className={"reservas"}>
@@ -79,6 +86,41 @@ export default function Reservas() {
           >Buscar</Button>
         </section>
       </section>
+      {
+        vuelos.length > 0 ? (
+          <section className="vuelosIndividuales">
+            <h2 className="vuelosIndividuales__title">{passengerName}</h2>
+            {
+              vuelos.map((vuelo) => (
+                <section className="vuelosIndividuales__item">
+                  <h3>{vuelo.origen} - {vuelo.destino}</h3>
+                  <p>Salida: {formatDate(vuelo.hora_salida)} - Llegada: {formatDate(vuelo.hora_llegada)}</p>
+                </section>
+              ))
+            }
+          </section>
+        ) : null
+      }
+      <AnimatePresence>
+        {
+          loading ? (
+            <motion.section 
+              className="vuelosIndividuales" 
+              ref={container}
+              initial={{ height: 0}}
+              animate={{ height: "auto"}}
+              exit={{ height: "auto"}}
+            >
+              <motion.h2 
+                className="vuelosIndividuales__title"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
+              >Buscando tus vuelos...</motion.h2>
+            </motion.section>
+          ) : null
+        }
+      </AnimatePresence>
     </main>
   );
 }

@@ -5,15 +5,16 @@ import { supabase } from "@/lib/supabase";
 import styles from "./Page.module.scss";
 import { Button } from "@/Components/Button/Button";
 
+export type Flight = {
+    num_vuelo: number;
+    origen: string;
+    destino: string;
+    hora_salida: string;
+    hora_llegada: string;
+    precio: number;
+}
+
 export default function Page () {
-    type Flight = {
-        num_vuelo: number;
-        origen: string;
-        destino: string;
-        hora_salida: string;
-        hora_llegada: string;
-        precio: number;
-    }
 
     const [params, setParams] = useState({
         origen: "",

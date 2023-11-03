@@ -86,12 +86,6 @@
         text-align: left;
         width: 100%;
     }
-    &__button{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-    }
     &__item{
         background-color: #eee;
         padding: 1rem;
@@ -109,5 +103,11 @@
             font-size: 0.95rem;
             font-weight: 400;
         }
+    }
+    &__button{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
     }       
 }

@@ -60,3 +60,55 @@
     
 
 }
+
+@media (max-width: 768px){
+    .main{
+        margin: 0;
+        height: calc(100vh - 116px);
+        h1{
+            margin-bottom: 2rem;
+            margin-left: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        & > button{
+            position: relative;
+            z-index: 10;
+            margin-left: 2rem;
+            margin-top: 3rem;
+        }
+    }
+    .form{
+        position: relative;
+        z-index: 10;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        margin: 2rem 0 0 2rem;
+        
+        &__calendar{
+            & > div{
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+        input{
+            width: calc(100% - 4rem);
+        }
+
+        & > div{
+            width: unset !important;
+        }
+    }
+    .plane{
+        position: absolute;
+        transform: translateY(-0%);
+        height: 200px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+    }
+}
