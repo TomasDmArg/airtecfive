@@ -34,15 +34,18 @@ export default function Reservas() {
         .eq("num_vuelo", data2.vuelo)
         .single();
 
-      console.log(data3)
-
-
-
-
     if (error) {
       console.error(error);
       return;
     }
+
+    if (data3.length === 0) {
+      console.log('No rows returned');
+      return;
+    }
+    
+    console.log(data3);
+    
 
   }
 
