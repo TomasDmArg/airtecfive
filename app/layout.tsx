@@ -3,6 +3,7 @@ import './globals.scss'
 import { GeistSans } from 'geist/font'
 import { Navbar } from '@/Components/Navbar/Navbar'
 import 'react-calendar/dist/Calendar.css';
+import { Footer } from '@/Components/Footer/Footer';
 
 export const metadata: Metadata = {
   title: 'AirTecFive',
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className={GeistSans.className}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   )
